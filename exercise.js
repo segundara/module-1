@@ -157,7 +157,7 @@ Write a function "giveMeRandom" which accepts a number n and returns an array co
 const giveMeRandom = function(n){
     let array = [];
     while(array.length < n){
-        let num = Math.floor(Math.random() * 10) + 0;
+        let num = Math.floor(Math.random() * 11) + 0;
         if(array.indexOf(num) === -1) array.push(num);
     }
     return array
