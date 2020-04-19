@@ -249,3 +249,19 @@ Ex.: X = 3, Y = 2
 */
 
 /* WRITE YOUR CODE HERE */
+const matrixGenerator = function(x,y){
+    let eachRow = []
+    let matrix = []
+    for (let col = 0; col < y; col++) {
+        for (let row = 0; row < x; row++) {
+            eachRow.push(col+""+row)
+        }
+    }
+    while (eachRow.length > 0) {
+        matrix.push(eachRow.splice(0,x))
+    }
+    return matrix
+}
+
+
+ console.log(matrixGenerator(3,4))
