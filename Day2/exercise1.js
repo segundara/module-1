@@ -16,7 +16,7 @@ let num = 12;
      sum = sum + num;
  }
 
- console.log(sum);
+ console.log("this sum is ",sum);
 
 /* WRITE YOUR CODE HERE */
 /* EXERCISE 2
@@ -53,26 +53,26 @@ if (name1.toLocaleLowerCase() === name2.toLocaleLowerCase()){
 Create the variable X (value less than 10). Write the code to print the literal value of the given number (ex.: 1 => one, 5 => five)
 */
 /* WRITE YOUR CODE HERE */
-x = 9;
+x = 10;
 if (x === 1){
     console.log("one")
-}if (x === 2){
+}else if (x === 2){
     console.log("two")
-}if (x === 3){
+}else if (x === 3){
     console.log("three")
-}if (x === 4){
+}else if (x === 4){
     console.log("four")
-}if (x === 5){
+}else if (x === 5){
     console.log("five")
-}if (x === 6){
+}else if (x === 6){
     console.log("six")
-}if (x === 7){
+}else if (x === 7){
     console.log("seven")
-}if (x === 8){
+}else if (x === 8){
     console.log("eight")
-}if (x === 9){
+}else if (x === 9){
     console.log("nine");
-}
+}else console.log("please give a number between 0 and 9")
 
 
 
