@@ -38,16 +38,38 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
     h6 {
         color:darkslateblue;
     }
-    .navbar li {
-        display: inline;
-        padding: 1em;
-        text-transform: uppercase;
-    }
     body {
         margin: auto;
         justify-content: center;
         width: 80%;
         text-align: center;
+    }
+    .navbar li {
+        display: inline;
+        padding: 1em;
+        text-transform: uppercase;
+    }
+    #priceList {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #priceList td, #priceList th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #priceList tr:nth-child(even){background-color: #f2f2f2;}
+
+    #priceList tr:hover {background-color: #ddd;}
+
+    #priceList th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
     }
     
     </style>
@@ -163,30 +185,28 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
             Create a table with the price for the services of the barber shop
         -->
         <br>
-        <div id="priceList" class="row7">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Service Type</th>
-                        <th>Service Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Class 1</td>
-                        <td>€100</td>
-                    </tr>
-                    <tr>
-                        <td>Class 2</td>
-                        <td>€50</td>
-                    </tr>
-                    <tr>
-                        <td>Class 3</td>
-                        <td>€20</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table id="priceList" class="row7">
+            <thead>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Service Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Class 1</td>
+                    <td>€100</td>
+                </tr>
+                <tr>
+                    <td>Class 2</td>
+                    <td>€50</td>
+                </tr>
+                <tr>
+                    <td>Class 3</td>
+                    <td>€20</td>
+                </tr>
+            </tbody>
+        </table>
 
     <!-- EXERCISE 9: 
             Place here a footer including:
@@ -209,6 +229,8 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
                     Write on console the size (height and width) of the current browser window
                     Write on console the size (height and width) of the current page window
                 */
+        console.log("size of browser window is" , windows.outerHeight +"x"+ windows.outerWidth)
+        console.log("size of browser window is" , windows.innerHeight +"x"+ windows.innerWidth)
       }
     </script>
   </body>
