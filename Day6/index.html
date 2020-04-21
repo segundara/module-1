@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="layerList">
+        <p>testing</p>
+    </div>
+
+    <script>
+
+        let projectList = [
+            {
+                id:1,
+                name:"bob"
+            },
+            {
+                id:2,
+                name:"kevin"
+            }
+        ]
+
+        function loadLayer() {
+            window.localStorage.setItem('project', JSON.stringify(projectList));
+            let p = JSON.parse(window.localStorage.getItem('project'));
+        
+            for (let i = 0; i < p.length; i++) {
+            
+                let projectName = createLayer(p[i].name)
+                appendLayer(projectName)
+            
+            }
+        }
+        
+        
+        function createLayer(name) {
+        
+            let li = document.createElement("li");
+            li.className = "list-group-item"
+            
+            let x = document.createElement("INPUT")
+            x.setAttribute("type", "text")
+            x.setAttribute("value", name)
+            
+            li.appendChild(x)
+            return li
+        }
+        
+        function appendLayer(layer) {
+            let layerList = document.getElementById("layerList")
+            layerList.appendChild(layer)
+        }
+
+        loadLayer()
+    </script>
+</body>
+
+</html>

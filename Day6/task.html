@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <script>
+      /* EXERCISE 1
+            Write a function to change the document title of the page in something else
+            */
+
+      function changeTitle(newTitle) {
+          let newTitles = document.querySelector('div h1')
+          newTitles.innerText = newTitle
+          console.log(newTitle)
+      }
+
+
+      /* EXERCISE 2
+            Write a function to change the class of the H1 on a page in "myHeading"
+            */
+
+        function addClassToHeading() {
+            let newClass = document.querySelector('div h1')
+            newClass.classList.add('newClass')
+            console.log(newClass)
+        }
+
+
+      /* EXERCISE 3
+            Write a function to change the text of only the p which are child of a div
+            */
+
+      function changePcontent() {
+        let newContent = document.querySelectorAll('div p')
+        for(let i=0; i<newContent.length; i++){
+            newContent[i].innerText = "Changed contents in Paragraph"
+
+        }        
+        console.log(newContent)
+      }
+
+
+      /* EXERCISE 4
+            Write a function to change the destination of every link to https://www.google.com
+            */
+
+      function changeUrls() {
+        let newUrl = document.getElementsByTagName('a')
+        for(let i=0; i<newUrl.length; i++){
+            newUrl[i].href= 'https://www.google.com'
+        
+
+        }
+        console.log(newUrl)
+            
+      }
+
+
+      /* EXERCISE 5
+            Write a function to add a new item ONLY to the second list
+            */
+
+      function addToTheSecond(content) {
+        let newContent = document.querySelector('#secondList')
+
+        let elem = document.createElement('li')
+        let textnode = document.createTextNode(content);  
+        elem.appendChild(textnode)
+        newContent.appendChild(elem)
+        console.log(elem)
+
+      }
+
+
+      /* EXERCISE 6
+           Write a function to add a second paragraph to the div
+            */
+
+      function addParagraph(content) {
+        let newElem = document.createElement('p')
+        let node = document.createTextNode(content);
+        newElem.appendChild(node) 
+
+        let newParagraph = document.querySelectorAll('div')
+        for(let i=0; i<newParagraph.length; i++){
+            newParagraph[i].appendChild(newElem)
+
+            
+        }        
+        console.log(newElem)
+        
+      }
+
+
+
+      /* EXERCISE 7
+           Write a function to make the first UL disappear
+            */
+
+      function firstUlDisappear() {
+          let newDis = document.querySelector('#firstList')
+          newDis.style.visibility="hidden";
+          
+          console.log(newDis)
+
+      }
+
+
+      /* EXERCISE 8
+            Write a function to make the background of every UL green
+            */
+
+      function paintItGreen() {
+        let newDis = document.querySelectorAll('ul')
+        for(let i=0; i<newDis.length; i++){
+            newDis[i].style.backgroundColor="green"
+        }
+        console.log(newDis)
+
+      }
+
+
+      /* EXERCISE 9
+            Make the heading of the page changing color every time the user clicks on it
+            */
+
+      function makeItClickable() {
+        let newHead = document.querySelector('h1')
+        newHead.onclick = function (e) {
+          let letters = '0123456789ABCDEF';
+          let color = '#';
+           for (var i = 0; i < 6; i++) {
+               color += letters[Math.floor(Math.random() * 16)];
+            }
+          newHead.style.color =color
+        }
+      }
+
+
+      /* EXERCISE 10
+          Create a new welcome alert message when the page successfully loads
+            */
+
+      window.onload = function () {
+         // alert("Welcome!")
+      }
+
+
+      /* EXERCISE 11
+            Use HTML5 tags to divide sections, headers etc 
+            */
+    </script>
+
+    <style>
+      .myHeading {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div>
+            <h1>This is the title of the page</h1>
+            <h2>This is the subtitle of the page</h2>
+        </div>
+    </header>
+
+    <section>
+        <div>
+            <hr />
+            <ul id="firstList">
+                <li>1st</li>
+                <li>2nd</li>
+                <li>3rd</li>
+            </ul>
+
+            <ul id="secondList">
+                <li>1st</li>
+                <li>2nd</li>
+                <li>3rd</li>
+            </ul>
+
+            <a href="strive.school">This link goes to Strive School</a>
+
+            <div>
+                <p>This text is just for the exercise</p>
+            </div>
+        </div>
+      
+    </section>
+
+    <section>
+        <div>
+            <p>And this text is just for the exercise too!</p>
+        </div>
+    </section>
+    
+  </body>
+</html>
