@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*body{
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+        }*/
+        .container {
+            display: grid;
+            align-content: center;
+            justify-content: center;
+            grid-template-columns: repeat(5, 40px);
+            grid-template-rows   : repeat(5, 40px);
+            grid-template-areas:
+            "output         output     output       output      output"
+            "num7           num8       num9         multi       sqrt"
+            "num4           num5       num6         minus       fact"
+            "num1           num2       num3         plus        pow"
+            "cee            num0       equal        divide      dec";
+            grid-gap: 2px;
+            row-gap: 2px;
+            height: 100vh;
+        }
+        .output {
+            grid-area: output;
+            text-align: right;
+        }
+        .num7 {
+            grid-area: num7;
+        }
+        .num8 {
+            grid-area: num8;
+        }
+        .num9 {
+            grid-area: num9;
+        }
+        .multi {
+            grid-area: multi;
+        }
+        .num4 {
+            grid-area: num4;
+        }
+        .num5 {
+            grid-area: num5;
+        }
+        .num6 {
+            grid-area: num6;
+        }
+        .minus {
+            grid-area: minus;
+        }
+        .num1 {
+            grid-area: num1;
+        }
+        .num2 {
+            grid-area: num2;
+        }
+        .num3 {
+            grid-area: num3;
+        }
+        .plus {
+            grid-area: plus;
+        }
+        .cee {
+            grid-area: cee;
+        }
+        .num0 {
+            grid-area: num0;
+        }
+        .equal {
+            grid-area: equal;
+        }
+        .divide {
+            grid-area: divide;
+        }
+        .sqrt {
+            grid-area: sqrt;
+        }
+        .fact {
+            grid-area: fact;
+        }
+        .pow {
+            grid-area: pow;
+        }
+        .dec {
+            grid-area: dec;
+        }
+        .signButton{
+            background-color:#ef3d59;
+            color: white;
+        }
+        .numericButton{
+            color: #ef3d59
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <input type="text" value="0" id="result" class="output" disabled>
+        <input type="button" value="7" class="num7 numericButton">
+        <input type="button" value="8" class="num8 numericButton">
+        <input type="button" value="9" class="num9 numericButton">
+        <input type="button" value="*" class="multi signButton">
+        <input type="button" value="√" class="sqrt signButton">
+        <input type="button" value="4" class="num4 numericButton">
+        <input type="button" value="5" class="num5 numericButton">
+        <input type="button" value="6" class="num6 numericButton">
+        <input type="button" value="-" class="minus signButton">
+        <input type="button" value="n!" class="fact signButton">
+        <input type="button" value="1" class="num1 numericButton">
+        <input type="button" value="2" class="num2 numericButton">
+        <input type="button" value="3" class="num3 numericButton">
+        <input type="button" value="+" class="plus signButton">
+        <input type="button" value="pow" class="pow signButton">
+        <input type="button" value="C" class="cee signButton">
+        <input type="button" value="0" class="num0 numericButton">
+        <input type="button" value="=" class="equal signButton">
+        <input type="button" value="/" class="divide signButton">
+        <input type="button" value="." class="dec signButton">
+    </section>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM LOADED')
+            // MEMORY OF OUR CALCULATOR
+            let operation = ""
+            let previousResult = 0 // FIRST OPERAND
+
+            const sum = function (x, y) {
+                return x + y
+            }
+            // const sum = (x,y) => x+y
+
+            const diff = function (x, y) {
+                return x - y
+            }
+
+            const mul = function (x, y) {
+                return x * y
+            }
+            const div = function (x, y) {
+                return x / y
+            }
+
+            // const power = (x,y) => Math.pow(x,y)
+
+            const power = (base, exponent) => {
+                let result = 1
+                for (let count = 0; count < exponent; count++) {
+                    result *= base
+                }
+                return result
+            }
+
+            const squareRoot = x => Math.sqrt(x)
+
+            // Factorial: n! --> 6! = 6*5*4*3*2*1 
+
+            // Factorial recursive version
+
+            const factorial = n => {
+                if (n <= 0 || n === 1) {
+                    return 1
+                } else return (n * factorial(n - 1))
+            }
+
+            const inputDecimal = x => !x.includes('.') ? `${x}.` : `${x}`
+
+            const numericButtonPressed = function (event) {
+                const numberPressed = event.target.value
+                console.log(numberPressed)
+                const result = document.getElementById("result")
+                if (result.value === '0') {
+                    result.value = numberPressed
+                } else {
+                    result.value = result.value + numberPressed
+                }
+            }
+
+            const functionButtonPressed = function (event) {
+                const keyPressed = event.target.value
+                console.log(keyPressed)
+                const result = document.getElementById("result")
+                switch (keyPressed) {
+                    case "=": // compute and display the result
+                        switch (operation) { // switch between + - / *
+                            case "+":
+                                // first operand + second operand --> result.value
+
+                                result.value = sum(previousResult, parseFloat(result.value))
+                                break;
+                            case "-":
+
+                                result.value = diff(previousResult, parseFloat(result.value))
+                                break;
+                            case "*":
+
+                                result.value = mul(previousResult, parseFloat(result.value))
+                                break;
+                            case "/":
+
+                                result.value = div(previousResult, parseFloat(result.value))
+                                break;
+                            case "pow":
+
+                                result.value = power(previousResult, parseFloat(result.value))
+                                break;
+                            default:
+                                console.log('Default case')
+
+                        }
+                        break;
+                    case "C": // resetting everything
+                        console.log("I'm the C button")
+                        result.value = "0"
+                        previousResult = 0
+                        break;
+                    case ".":
+                        result.value = inputDecimal(result.value)
+                        break;
+                    case "√":
+                        result.value = squareRoot(result.value)
+                        break;
+                    case "n!":
+                        result.value = factorial(result.value)
+                        break;
+                    default:
+                        console.log('KEY PRESSED: ', keyPressed)
+                        previousResult = parseFloat(result.value) // saving first operand
+                        operation = keyPressed // saving operation selected
+                        result.value = "0" // reset to zero to let the user type second operand
+                }
+
+            }
+
+            // ADDING FUNCTIONALITIES TO BUTTONS
+
+            const numericButtons = document.getElementsByClassName("numericButton")
+
+            const functionButtons = document.getElementsByClassName("signButton")
+
+            for (let button of numericButtons) {
+                button.addEventListener('click', numericButtonPressed)
+            }
+
+            for (let button of functionButtons) {
+                button.addEventListener('click', functionButtonPressed)
+            }
+
+
+        })
+    </script>
+</body>
+</html>
