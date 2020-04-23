@@ -16,8 +16,8 @@
             display: grid;
             align-content: center;
             justify-content: center;
-            grid-template-columns: repeat(5, 40px);
-            grid-template-rows   : repeat(5, 40px);
+            grid-template-columns: repeat(5, 0.07fr);
+            grid-template-rows   : repeat(5, 0.1fr);
             grid-template-areas:
             "output         output     output       output      output"
             "num7           num8       num9         multi       sqrt"
@@ -31,6 +31,7 @@
         .output {
             grid-area: output;
             text-align: right;
+            font-size: larger;
         }
         .num7 {
             grid-area: num7;
@@ -133,30 +134,60 @@
             let operation = ""
             let previousResult = 0 // FIRST OPERAND
 
-            const sum = function (x, y) {
-                return x + y
+            const sum = function () {
+                //return x + y
+                let num = result.value
+                let n = num.split('+')
+                let sum = 0
+                for(i = 0; i < n.length; i++){
+                    sum += parseFloat(n[i])
+                }
+                if(n[0].includes('.')||n[1].includes('.')){
+                        if(n[0].length > n[1].length){
+                            let p = n[0].length-1
+                        }else p = n[1].length-1
+                        return sum.toFixed(p)
+                    }else return sum
+                //return sum
+                //console.log(sum)
             }
             // const sum = (x,y) => x+y
 
-            const diff = function (x, y) {
-                return x - y
+            const diff = function () {
+                //return x - y
+                let num = result.value
+                let n = num.split('-')
+                let minus = parseFloat(n[0] - n[1])
+                return minus
             }
 
-            const mul = function (x, y) {
-                return x * y
+            const mul = function () {
+                //return x * y
+                let num = result.value
+                let n = num.split('*')
+                let multi = parseFloat(n[0] * n[1])
+                return multi
             }
             const div = function (x, y) {
-                return x / y
+                //return x / y
+                let num = result.value
+                let n = num.split('/')
+                let divide = parseFloat(n[0] / n[1])
+                return divide
             }
 
             // const power = (x,y) => Math.pow(x,y)
 
-            const power = (base, exponent) => {
-                let result = 1
+            const power = () => {
+                let num = result.value
+                let n = num.split('pow')
+                let base = parseFloat(n[0])
+                let exponent = parseFloat(n[1])
+                let ans = 1
                 for (let count = 0; count < exponent; count++) {
-                    result *= base
+                    ans *= base
                 }
-                return result
+                return ans
             }
 
             const squareRoot = x => Math.sqrt(x)
@@ -171,7 +202,14 @@
                 } else return (n * factorial(n - 1))
             }
 
-            const inputDecimal = x => !x.includes('.') ? `${x}.` : `${x}`
+            //const inputDecimal = x => !x.includes('.') ? `${x}.` : `${x}`
+            function inputDecimal (){
+                for(i=0; i<result.value.length;i++){
+                    if(!result.value[i].includes('.')){
+                        return `${result.value}.`
+                    }else return `${result.value}`
+                }
+            }
 
             const numericButtonPressed = function (event) {
                 const numberPressed = event.target.value
@@ -193,24 +231,25 @@
                         switch (operation) { // switch between + - / *
                             case "+":
                                 // first operand + second operand --> result.value
+                                result.value = sum()
 
-                                result.value = sum(previousResult, parseFloat(result.value))
+                                //result.value = sum(previousResult, parseFloat(result.value))
                                 break;
                             case "-":
 
-                                result.value = diff(previousResult, parseFloat(result.value))
+                                result.value = diff()//(previousResult, parseFloat(result.value))
                                 break;
                             case "*":
 
-                                result.value = mul(previousResult, parseFloat(result.value))
+                                result.value = mul()//(previousResult, parseFloat(result.value))
                                 break;
                             case "/":
 
-                                result.value = div(previousResult, parseFloat(result.value))
+                                result.value = div()//(previousResult, parseFloat(result.value))
                                 break;
                             case "pow":
 
-                                result.value = power(previousResult, parseFloat(result.value))
+                                result.value = power()//(previousResult, parseFloat(result.value))
                                 break;
                             default:
                                 console.log('Default case')
@@ -235,7 +274,8 @@
                         console.log('KEY PRESSED: ', keyPressed)
                         previousResult = parseFloat(result.value) // saving first operand
                         operation = keyPressed // saving operation selected
-                        result.value = "0" // reset to zero to let the user type second operand
+                        result.value = previousResult.toString().concat(operation.toString()) // retain all operands on the screen till result is displayed
+                        
                 }
 
             }

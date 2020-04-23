@@ -26,8 +26,11 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
        Style every button of the page to be bigger
     */
     body{
-        height: 100vh;
         background-color: thistle;
+        text-align: center;
+    }
+    #container{
+        height: 100vh;
         justify-content: center;
         align-items: center;
     }
@@ -42,19 +45,22 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
          padding: 2px;
          margin: 1px;
          font-size: 2rem;
+         list-style-type:square;
+         text-align: left;
       }
 
       input {
          border: 2px solid red;
-         padding: 10px;
+         padding: 5px;
          border-radius: 25px;
-         font-size: 2rem;
+         font-size: 1rem;
       }
    </style>
 
 </head>
 
 <body>
+    <section id="container">
    <h1>Welcome to your personal Task List!</h1>
    <br />
 
@@ -85,7 +91,7 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
    <hr />
 
    <input type="button" value="Sort" onclick="bubbleSort()" />
-
+</section>
    <script>
       function addNewTask() {
          /* EXERCISE 5: 
@@ -101,6 +107,7 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
         
         task.appendChild(content)
         taskList.appendChild(task)
+        document.querySelector('#newTask').value = ''
       }
 
       /* EXERCISE 6: 
